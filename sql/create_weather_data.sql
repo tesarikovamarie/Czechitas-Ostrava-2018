@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS pocasi;
+DROP TABLE IF EXISTS weather;
 
-CREATE TABLE pocasi (
-    city_id VARCHAR(24),
-    city_name VARCHAR (32)
+CREATE TABLE weather (
+    airport_code VARCHAR(24),
+    city_name VARCHAR (64),
     datetime_column DATE,
     temp_high INT,
     temp_avg INT,
@@ -27,5 +27,5 @@ CREATE TABLE pocasi (
     CONSTRAINT city_datetime PRIMARY KEY(city_id, datetime_column)
 ) ;
 
-COPY pocasi
+COPY weather
 FROM '/Users/marietesarikova/Downloads/weather_prague_2017_fixed.csv' DELIMITER ',' CSV HEADER;

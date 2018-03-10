@@ -1,1 +1,2 @@
-head -n 1 `find . -name "weather_*.csv" -print | head -n 1` > weather.csv; awk FNR-1 weather_*.csv >> weather.csv
+head -n 1 `find . -name "weather_*.csv" -print | head -n 1` > weather.csv
+awk FNR-1 weather_*.csv >> weather.csv
