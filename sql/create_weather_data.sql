@@ -24,8 +24,21 @@ CREATE TABLE weather (
     wind_low INT,
     precip FLOAT,
     events VARCHAR(255),
-    CONSTRAINT city_datetime PRIMARY KEY(city_id, datetime_column)
+    good_weather BOOLEAN,
+    UNIQE city_datetime (city_id, datetime_column)
 ) ;
 
 COPY weather
 FROM '/Users/marietesarikova/Downloads/weather_prague_2017_fixed.csv' DELIMITER ',' CSV HEADER;
+
+
+UPDATE weather SET good_weather = false;
+UPDATE weather SET good_weather = true
+WHERE
+	temp_avg >= 12 AND
+	temp_avg < 31 AND
+	precip < 5 AND
+	wind_avg < 20 AND
+	humidity_avg >= 35 AND
+	humidity_avg < 85 AND
+	(events IS NULL OR events = '');
